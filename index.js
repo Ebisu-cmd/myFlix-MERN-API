@@ -8,11 +8,11 @@ const app = express();
 
 // create a write stream (in append mode)
 // a ‘log.txt’ file is created in root directory
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), { flags: 'a' })
 
 // middleware functions used
 app.use(morgan('common')); //logger for console
-app.use(morgan('combined', {stream: accessLogStream})); //logger for log.txt file
+app.use(morgan('combined', { stream: accessLogStream })); //logger for log.txt file
 app.use(express.static('public')); //serving static files
 
 // top ten movies data
