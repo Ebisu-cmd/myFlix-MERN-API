@@ -16,7 +16,7 @@ app.use(morgan('combined', { stream: accessLogStream })); //logger for log.txt f
 app.use(express.static('public')); //serving static files
 
 // top ten movies data
-let topTenMovies = [
+let movies = [
     {
         title: 'The Dark Knight',
         director: 'Christopher Nolan'
@@ -71,11 +71,11 @@ let topTenMovies = [
 
 // API routing
 app.get('/movies', (req, res) => {
-    res.send('A JSON object that contains all the movies in the database');
+    res.json(movies);
 });
 
 app.get('/movies/:title', (req, res) => {
-    res.send('A JSON object holding data about a single movie');
+    res.json(movies.find((movie) => { return movie.title === req.params.title }));
 });
 
 app.get('/movies/genres/:genrename', (req, res) => {
