@@ -74,23 +74,23 @@ app.get('/movies', (req, res) => {
     res.send('A JSON object that contains all the movies in the database');
 });
 
-app.get('/movies/:title', (req,res) => {
+app.get('/movies/:title', (req, res) => {
     res.send('A JSON object holding data about a single movie');
 });
 
-app.get('/movies/genres/:genrename', (req,res) => {
+app.get('/movies/genres/:genrename', (req, res) => {
     res.send('A JSON object holding data about a genre');
 });
 
-app.get('/movies/directors/:name', (req,res) => {
+app.get('/movies/directors/:name', (req, res) => {
     res.send('A JSON object holding data about a movie director');
 });
 
-app.post('/users', (req,res) => {
+app.post('/users', (req, res) => {
     res.send('A JSON object holding data about the user that was added, including an ID');
 });
 
-app.put('/users/:id', (req,res) => {
+app.put('/users/:id', (req, res) => {
     res.send('A text message indicating whether the users information was successfully changed');
 });
 
@@ -102,7 +102,7 @@ app.delete('/users/:id/:movietitle', (req, res) => {
     res.send('A text message indicating whether the desired movie was deleted in the users list of favorites');
 });
 
-app.delete('users/:id', (req, res) => {
+app.delete('/users/:id', (req, res) => {
     res.send('A text message indicating that a user email has been removed');
 });
 
