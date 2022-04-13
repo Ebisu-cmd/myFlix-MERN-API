@@ -70,7 +70,20 @@
                 <td>Allow a user to register</td>
                 <td>/users</td>
                 <td>POST</td>
-                <td>A JSON object holding data about the user to add</td>
+                <td>
+                    A JSON object holding data about the user to add<br><br>
+                    Example:<br>
+                    <pre>
+                        <code>
+            {
+                "name": "Gabriel Jardio",
+                "username": "gjardio",
+                "email": "gabrieljardio@gmail.com",
+                "favorite-movies": ["Interstellar", "Dunkirk"]
+            }
+                        </code>
+                    </pre>
+                </td>
                 <td>A JSON object holding data about the user that was added, including an ID</td>
             </tr>
 

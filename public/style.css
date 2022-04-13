@@ -5,7 +5,9 @@ body {
     text-align: center;
 }
 
-table, th, td {
+table,
+th,
+td {
     border: 1px solid;
     text-align: center;
 }
@@ -15,6 +17,11 @@ table {
     width: 100%;
 }
 
-th, td {
+th,
+td {
     padding: 15px;
+}
+
+pre {
+    text-align: left;
 }
