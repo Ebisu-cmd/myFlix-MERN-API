@@ -69,13 +69,45 @@ let topTenMovies = [
 
 ];
 
-// GET requests
+// API routing
 app.get('/movies', (req, res) => {
-    res.json(topTenMovies);
+    res.send('A JSON object that contains all the movies in the database');
+});
+
+app.get('/movies/:title', (req,res) => {
+    res.send('A JSON object holding data about a single movie');
+});
+
+app.get('/movies/genres/:genrename', (req,res) => {
+    res.send('A JSON object holding data about a genre');
+});
+
+app.get('/movies/directors/:name', (req,res) => {
+    res.send('A JSON object holding data about a movie director');
+});
+
+app.post('/users', (req,res) => {
+    res.send('A JSON object holding data about the user that was added, including an ID');
+});
+
+app.put('/users/:id', (req,res) => {
+    res.send('A text message indicating whether the users information was successfully changed');
+});
+
+app.post('/users/:id/:movietitle', (req, res) => {
+    res.send('A text message indicating whether the desired movie was added to the users list of favorites');
+});
+
+app.delete('/users/:id/:movietitle', (req, res) => {
+    res.send('A text message indicating whether the desired movie was deleted in the users list of favorites');
+});
+
+app.delete('users/:id', (req, res) => {
+    res.send('A text message indicating that a user email has been removed');
 });
 
 app.get('/', (req, res) => {
-    res.send('Hello, welcome to the myFlix API!')
+    res.sendFile('public/documentation.html', { root: __dirname });
 })
 
 // error handling
