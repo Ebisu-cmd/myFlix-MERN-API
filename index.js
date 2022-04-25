@@ -2,9 +2,15 @@
 const express = require('express'),
     morgan = require('morgan'),
     fs = require('fs'),
-    path = require('path');
+    path = require('path'),
+    mongoose = require('mongoose'),
+    Models = require('./models.js');
 
 const app = express();
+
+//import models for user and movie schema
+const Movies = Models.Movie;
+const Users = Models.User;
 
 // create a write stream (in append mode)
 // a ‘log.txt’ file is created in root directory
@@ -14,6 +20,7 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), { 
 app.use(morgan('common')); //logger for console
 app.use(morgan('combined', { stream: accessLogStream })); //logger for log.txt file
 app.use(express.static('public')); //serving static files
+mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true }); //connect to database
 
 // API routing
 app.get('/movies', (req, res) => {
