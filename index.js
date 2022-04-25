@@ -15,60 +15,6 @@ app.use(morgan('common')); //logger for console
 app.use(morgan('combined', { stream: accessLogStream })); //logger for log.txt file
 app.use(express.static('public')); //serving static files
 
-// top ten movies data
-let movies = [
-    {
-        title: 'The Dark Knight',
-        director: 'Christopher Nolan'
-    },
-
-    {
-        title: 'Inception',
-        director: 'Christopher Nolan'
-    },
-
-    {
-        title: 'Interstellar',
-        director: 'Christopher Nolan'
-    },
-
-    {
-        title: 'Spirited Away',
-        director: 'Hayao Miyazaki'
-    },
-
-    {
-        title: 'Parasite',
-        director: 'Bong Joon Ho'
-    },
-
-    {
-        title: 'WALL·E',
-        director: 'Andrew Stanton'
-    },
-
-    {
-        title: 'Spider-Man: Into the Spider-Verse',
-        director: 'Bob Persichetti'
-    },
-
-    {
-        title: 'Princess Mononoke',
-        director: 'Hayao Miyazaki'
-    },
-
-    {
-        title: 'Your Name.',
-        director: 'Makoto Shinkai'
-    },
-
-    {
-        title: 'Shutter Island',
-        director: 'Martin Scorsese'
-    },
-
-];
-
 // API routing
 app.get('/movies', (req, res) => {
     res.json(movies);
