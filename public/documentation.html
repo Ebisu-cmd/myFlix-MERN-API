@@ -38,32 +38,107 @@
                 <td>/movies</td>
                 <td>GET</td>
                 <td>None</td>
-                <td>A JSON object that contains all the movies in the database</td>
+                <td>
+                    A JSON object that contains all the movies in the database<br><br>
+                    Example:<br>
+                    <pre>
+                        <code>
+[
+    {
+        "Director": {
+            "Name": "Christopher Nolan",
+            "Bio": "Best known for his cerebral ...",
+            "Birthday": "1970-07-30T00:00:00.000Z"
+        },
+        "Genre": {
+            "Name": "Adventure",
+            "Description": "The adventure genre consists of..."
+        },
+        "Actors": [],
+        "_id": "6260994f363ccb7c4449495b",
+        "Title": "Inception",
+        "Description": "A thief who steals corporate secrets...",
+        "ImageUrl": "https://www.imdb.com/...",
+        "Featured": true
+    },
+    {
+        ...
+
+]
+                        </code>
+                    </pre>
+                </td>
             </tr>
 
             <tr>
-                <td>Return data (description, genre, director, image URL, whether it's featured or not) about a single
-                    movie by title to the user</td>
+                <td>Return data about a single movie by title to the user</td>
                 <td>/movies/[Title]</td>
                 <td>GET</td>
                 <td>None</td>
-                <td>A JSON object holding data about a single movie</td>
+                <td>
+                    A JSON object holding data about a single movie<br><br>
+                    Example:<br>
+                    <pre>
+                        <code>
+{
+    "Director": {
+        "Name": "Andrew Stanton",
+        "Bio": "Andrew Stanton has been a major...",
+        "Birthday": "1965-12-03T00:00:00.000Z"
+    },
+    "Genre": {
+        "Name": "Animation",
+        "Description": "Animation is a method in which..."
+    },
+    "Actors": [],
+    "_id": "62609d7d363ccb7c4449495f",
+    "Title": "WALL·E",
+    "Description": "In the distant future, a small waste-collecting...",
+    "ImageUrl": "https://www.imdb.com/...",
+    "Featured": true
+}
+                        </code>
+                    </pre>
+                </td>
             </tr>
 
             <tr>
-                <td>Return data about a genre (description) by name/title (e.g., “Thriller”)</td>
+                <td>Return data about a genre by name</td>
                 <td>/movies/genres/[GenreName]</td>
                 <td>GET</td>
                 <td>None</td>
-                <td>A JSON object holding data about a genre</td>
+                <td>
+                    A JSON object holding data about a genre<br><br>
+                    Example:<br>
+                    <pre>
+                        <code>
+{
+    "Name": "Comedy",
+    "Description": "A comedy film is a category of film..."
+}
+                        </code>
+                    </pre>
+                </td>
             </tr>
 
             <tr>
-                <td>Return data about a director (bio, birth year, death year) by name</td>
+                <td>Return data about a director by name</td>
                 <td>/movies/directors/[Name]</td>
                 <td>GET</td>
                 <td>None</td>
-                <td>A JSON object holding data about a movie director</td>
+                <td>
+                    A JSON object holding data about a movie director<br><br>
+                    Example:<br>
+                    <pre>
+                        <code>
+{
+    "Name": "Hayao Miyazaki",
+    "Bio": "Hayao Miyazaki (宮崎 駿, Miyazaki ...",
+    "Birthday": "1941-01-05T00:00:00.000Z"
+}
+                        </code>
+                    </pre>
+                </td>
             </tr>
 
             <tr>
@@ -75,48 +150,123 @@
                     Example:<br>
                     <pre>
                         <code>
-            {
-                "name": "Gabriel Jardio",
-                "username": "gjardio",
-                "email": "gabrieljardio@gmail.com",
-                "favorite-movies": ["Interstellar", "Dunkirk"]
-            }
+{
+    "Username": "user123",
+    "Password": "pass123",
+    "Email": "user123@gmail.com",
+    "Birthday": "1999-09-09"
+}
                         </code>
                     </pre>
                 </td>
-                <td>A JSON object holding data about the user that was added, including an ID</td>
+                <td>
+                    A JSON object holding data about the user that was added, including an ID<br><br>
+                    Example:<br>
+                    <pre>
+                        <code>
+{
+    "Username": "user123",
+    "Password": "pass123",
+    "Email": "user123@gmail.com",
+    "Birthday": "1999-09-09T00:00:00.000Z",
+    "FavoriteMovies": [],
+    "_id": "62683a2531a60d702f674642",
+}
+                        </code>
+                    </pre>
+                </td>
             </tr>
 
             <tr>
-                <td>Allow a user to update their user info (username)</td>
-                <td>/users/[ID]</td>
+                <td>Allow a user to update their information by username</td>
+                <td>/users/[Username]</td>
                 <td>PUT</td>
-                <td>A JSON object holding the changes to the users information</td>
-                <td>A text message indicating whether the users information was successfully changed</td>
+                <td>
+                    A JSON object holding the changes to the users information<br><br>
+                    Example:<br>
+                    <pre>
+                        <code>
+{
+    "Username": "newuser123",
+    "Password": "newpass123",
+    "Email": "newuser123@gmail.com",
+    "Birthday": "2000-09-09"
+} 
+                        </code>
+                    </pre>
+                </td>
+                <td>
+                    A JSON object holding the users updated information<br><br>
+                    Example:<br>
+                    <pre>
+                        <code>
+{
+    "_id": "62683a2531a60d702f674642",
+    "Username": "newuser123",
+    "Password": "newpass123",
+    "Email": "newuser123@gmail.com",
+    "Birthday": "2000-09-09T00:00:00.000Z",
+    "FavoriteMovies": [],
+}
+                        </code>
+                    </pre>
+                </td>
             </tr>
 
             <tr>
                 <td>Allow a user to add a movie to their list of favorites</td>
-                <td>/users/[ID]/[MovieTitle]</td>
+                <td>/users/[Username]/movies/[Title]</td>
                 <td>POST</td>
                 <td>None</td>
-                <td>A text message indicating whether the desired movie was added to the users list of favorites</td>
+                <td>
+                    A JSON object holding the users information and updated favorite movie list<br><br>
+                    Example:<br>
+                    <pre>
+                        <code>
+{
+    "_id": "62683a2531a60d702f674642",
+    "Username": "newuser123",
+    "Password": "newpass123",
+    "Email": "newuser123@gmail.com",
+    "Birthday": "2000-09-09T00:00:00.000Z",
+    "FavoriteMovies": [
+        "62609a97363ccb7c4449495c"
+    ]
+}
+                        </code>
+                    </pre>
+                </td>
             </tr>
 
             <tr>
                 <td>Allow a user to remove a movie from their list of favorites</td>
-                <td>/users/[ID]/[MovieTitle]</td>
+                <td>/users/[Username]/[MovieTitle]</td>
                 <td>DELETE</td>
                 <td>None</td>
-                <td>A text message indicating whether the desired movie was deleted in the users list of favorites</td>
+                <td>
+                    A JSON object holding the users information and updated favorite movie list<br><br>
+                    Example:<br>
+                    <pre>
+                        <code>
+{
+    "_id": "62683a2531a60d702f674642",
+    "Username": "newuser123",
+    "Password": "newpass123",
+    "Email": "newuser123@gmail.com",
+    "Birthday": "2000-09-09T00:00:00.000Z",
+    "FavoriteMovies": []
+}
+                        </code>
+                    </pre>
+                </td>
             </tr>
 
             <tr>
                 <td>Allow an existing user to deregister</td>
-                <td>/users/[ID]</td>
+                <td>/users/[Username]</td>
                 <td>DELETE</td>
                 <td>None</td>
-                <td>A text message indicating that a user email has been removed</td>
+                <td>A text message indicating that a user was successfully deleted</td>
             </tr>
         </tbody>
     </table>
