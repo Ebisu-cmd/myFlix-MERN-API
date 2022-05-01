@@ -268,6 +268,37 @@
                 <td>None</td>
                 <td>A text message indicating that a user was successfully deleted</td>
             </tr>
+
+            <tr>
+                <td>Allow a user to login</td>
+                <td>
+                    /login<br><br>
+                    Params: (Username, Password)    
+                </td>
+                <td>POST</td>
+                <td>None</td>
+                <td>
+                    A JSON object holding the users information as well as an assigned JWT<br><br>
+                    Example:<br>
+                    <pre>
+                        <code>
+{
+    "user": {
+        "_id": "626e28dcea8b35912385ba69",
+        "Username": "yes",
+        "Password": "no",
+        "Email": "yesno@gmail.com",
+        "Birthday": "1970-09-02T00:00:00.000Z",
+        "FavoriteMovies": [],
+        "__v": 0
+    },
+    "token": "eyJhbGciOi..."
+}
+                        </code>
+                    </pre>
+                </td>
+
+            </tr>
         </tbody>
     </table>
 </body>
