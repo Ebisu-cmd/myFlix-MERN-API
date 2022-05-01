@@ -1,12 +1,15 @@
+// import required modules
 const passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     Models = require('./model.js'),
     passportJWT = require('passport-jwt');
 
+// variables used for authentication definitions
 let Users = Models.User,
     JWTStrategy = passportJWT.Strategy,
     ExtractJWT = passportJWT.ExtractJwt;
 
+// http authentication defintion
 passport.use(new LocalStrategy({
     usernameField: 'Username',
     passwordField: 'Password'
@@ -28,6 +31,7 @@ passport.use(new LocalStrategy({
     });
 }));
 
+// JWT authentication definition
 passport.use(new JWTStrategy({
     jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
     secretOrKey: 'your_jwt_secret'
