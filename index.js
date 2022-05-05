@@ -5,6 +5,7 @@ const express = require('express'),
     path = require('path'),
     mongoose = require('mongoose'),
     Models = require('./models.js'),
+    { check, validationResult } = require('express-validator'),
     bodyParser = require('body-parser');
 
 const app = express();
@@ -99,7 +100,22 @@ app.get('/movies/directors/:name', passport.authenticate('jwt', { session: false
 });
 
 // register a new user
-app.post('/users', (req, res) => {
+app.post('/users', 
+    // request body data validation
+    [
+        check('Username', 'Username is required').not().isEmpty(),
+        check('Username', 'Username contains non alphanumeric characters').isAlphanumeric(),
+        check('Password', 'Password is required').not().isEmpty(),
+        check('Email', 'Email is not valid').isEmail()
+    ], (req, res) => {
+
+    // check validation object for errors
+    let errors = validationResult(req);
+
+    if(!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+    }
+
     let hashedPassword = Users.hashPassword(req.body.Password);
     Users.findOne({ Username: req.body.Username })
         .then((user) => {
@@ -128,7 +144,22 @@ app.post('/users', (req, res) => {
 
 
 // update users information by username
-app.put('/users/:username', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.put('/users/:username', passport.authenticate('jwt', { session: false }),
+    // request body data validation
+    [
+        check('Username', 'Username is required').not().isEmpty(),
+        check('Username', 'Username contains non alphanumeric characters').isAlphanumeric(),
+        check('Password', 'Password is required').not().isEmpty(),
+        check('Email', 'Email is not valid').isEmail()
+    ],  (req, res) => {
+
+    // check validation object for errors
+    let errors = validationResult(req);
+
+    if(!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+    }
+    
     Users.findOneAndUpdate({ Username: req.params.username }, {$set: 
         {
             Username: req.body.Username,

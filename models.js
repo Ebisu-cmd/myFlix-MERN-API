@@ -1,5 +1,6 @@
 // import mongoose as the app's ODM for MongoDB
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'),
+    bcrypt = require('bcrypt');
 
 // define schemas for movie and user documents
 let movieSchema = mongoose.Schema({
