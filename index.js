@@ -24,6 +24,9 @@ app.use(express.static('public')); //serving static files
 app.use(bodyParser.json()); //parsing headerbody
 app.use(bodyParser.urlencoded({ extended: true})); //parsing headerbody
 
+const cors = require('cors');
+app.use(cors());
+
 let auth = require('./auth')(app); // imports our auth.js file
 const passport = require('passport'); // imports passport module
 require('./passport'); //imports our passport.js file
