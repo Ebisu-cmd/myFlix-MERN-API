@@ -24,7 +24,7 @@ app.use(express.static('public')); //serving static files
 app.use(bodyParser.json()); //parsing headerbody
 app.use(bodyParser.urlencoded({ extended: true})); //parsing headerbody
 
-const cors = require('cors');
+const cors = require('cors'); // implements CORS in our API
 app.use(cors());
 
 let auth = require('./auth')(app); // imports our auth.js file
@@ -100,6 +100,7 @@ app.get('/movies/directors/:name', passport.authenticate('jwt', { session: false
 
 // register a new user
 app.post('/users', (req, res) => {
+    let hashedPassword = Users.hashPassword(req.body.Password);
     Users.findOne({ Username: req.body.Username })
         .then((user) => {
             if(user) {
@@ -108,7 +109,7 @@ app.post('/users', (req, res) => {
             else {
                 Users.create({
                     Username: req.body.Username,
-                    Password: req.body.Password,
+                    Password: hashedPassword,
                     Email: req.body.Email,
                     Birthday: req.body.Birthday
                 })
