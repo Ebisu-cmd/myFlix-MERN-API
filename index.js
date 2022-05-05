@@ -32,7 +32,8 @@ let auth = require('./auth')(app); // imports our auth.js file
 const passport = require('passport'); // imports passport module
 require('./passport'); //imports our passport.js file
 
-mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true }); //connect to database
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true }); //connect to prod database
+// mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true }); //connect to local test database
 
 // API routing
 
